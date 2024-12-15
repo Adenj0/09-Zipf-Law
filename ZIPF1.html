@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de Fréquence des Mots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analyse de Fréquence des Mots</h1>
+    <textarea id="inputText" placeholder="Collez ou entrez votre texte ici..."></textarea>
+    <button onclick="analyzeText()">Analyser</button>
+    <table id="resultTable">
+        <thead>
+            <tr>
+                <th>Mot</th>
+                <th>Fréquence</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function analyzeText() {
+            // Récupérer le texte de la zone de saisie
+            const text = document.getElementById("inputText").value;
+
+            // Nettoyer le texte (supprimer ponctuation et mettre en minuscules)
+            const cleanText = text.replace(/[^\w\s]/gi, '').toLowerCase();
+
+            // Découper le texte en mots
+            const words = cleanText.split(/\s+/);
+
+            // Compter les mots
+            const wordCounts = {};
+            for (const word of words) {
+                if (word) {
+                    wordCounts[word] = (wordCounts[word] || 0) + 1;
+                }
+            }
+
+            // Trier les mots par fréquence
+            const sortedWordCounts = Object.entries(wordCounts)
+                .sort(([, a], [, b]) => b - a);
+
+            // Générer le tableau des résultats
+            const tableBody = document.getElementById("resultTable").querySelector("tbody");
+            tableBody.innerHTML = ""; // Réinitialiser le tableau
+
+            sortedWordCounts.forEach(([word, count]) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${word}</td><td>${count}</td>`;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
