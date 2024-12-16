@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyse de Texte</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    button {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 10px 20px;
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #005bb5;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #0078d7;
+      color: white;
+    }
+    canvas {
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
+    }
+    #chartSection {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Analyse de Texte</h1>
+  <textarea id="inputText" placeholder="Entrez un texte ici..."></textarea>
+  <button onclick="analyzeText()">Analyser</button>
+
+  <!-- Section du graphique -->
+  <section id="chartSection">
+    <h2>Visualisation Logarithmique</h2>
+    <canvas id="frequencyChart" aria-label="Graphique des fréquences des mots"></canvas>
+  </section>
+
+  <!-- Section du tableau -->
+  <section id="resultsSection">
+    <h2>Fréquences des mots</h2>
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Mot</th>
+          <th>Fréquence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Les lignes des mots analysés apparaîtront ici -->
+      </tbody>
+    </table>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
